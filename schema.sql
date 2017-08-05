@@ -1,13 +1,19 @@
-DROP DATABASE IF EXISTS test;
+DROP DATABASE IF EXISTS fanflock;
 
-CREATE DATABASE test;
+CREATE DATABASE fanflock;
 
-USE test;
+USE fanflock;
 
-CREATE TABLE items (
+CREATE TABLE followers (
   id int NOT NULL AUTO_INCREMENT,
-  quantity integer NOT NULL,
-  description varchar(50) NOT NULL,
+  userid varchar(50) NOT NULL,
+  following integer NOT NULL,
+  PRIMARY KEY (ID)
+);
+
+CREATE TABLE followed (
+  id int NOT NULL AUTO_INCREMENT,
+  username varchar(50) NOT NULL,
   PRIMARY KEY (ID)
 );
 
