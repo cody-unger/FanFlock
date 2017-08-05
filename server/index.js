@@ -53,7 +53,6 @@ app.post('/items', function (req, res) {
                 if (results) {
                   var followedId = results[0].id;
                   mysqldb.addFollowers((err, results) => {
-                    results && res.send();
                   }, resBody.ids, followedId);
                 }
               }, lcUsername);
@@ -62,16 +61,16 @@ app.post('/items', function (req, res) {
             var followedId = results[0].id;
             mysqldb.deleteFollowers((err, results) => {
               results && mysqldb.addFollowers((err, results) => {
-                results && res.send();
               }, resBody.ids, followedId);
             }, followedId);
           }
         }, lcUsername);
       }
     };
-  
+    
     request(options, addFollowedAndFollowers);
   });
+  res.status(201).send();
 });
 
 app.listen(3000, function() {

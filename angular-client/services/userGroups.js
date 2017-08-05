@@ -7,6 +7,10 @@ angular.module('app')
         url: "/items",
         data: JSON.stringify({userGroupQuery}),
         contentType: 'application/JSON'
-    });
+    }).then(function successCallback(response) {
+        callback(userGroupQuery);
+      }, function errorCallback(response) {
+        console.log('error');
+    });;
   };
 });

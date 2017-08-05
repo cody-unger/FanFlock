@@ -4,9 +4,11 @@ angular.module('app')
     this.items = data;
   });
   this.handleclick = (userGroupQuery) => {
-    userGroupsService.post(userGroupQuery);
-  } 
-  this.items = [{description: 'list item'}, {description: 'list item'}, {description: 'list item'}];
+    userGroupsService.post(userGroupQuery, (userGroupQuery) => {
+      this.items.push(userGroupQuery.join(','));
+    });
+  }; 
+  this.items = [];
   this.users = [{handle: '@bob', proflink: 'twitter.com'}, {handle: '@bob', proflink: 'twitter.com'}, {handle: '@bob', proflink: 'twitter.com'}];
 })
 .component('app', {
