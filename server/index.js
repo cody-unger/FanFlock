@@ -41,40 +41,36 @@ app.post('/items', function (req, res) {
         token_secret: 'AjVJvPMmhXVC3do1XznwKdHTKInCTKrxvDKzl1XQe0C8n'
       }
     };
-    var callback = function(error, response, body) {
+
+    var addFollowedAndFollowers = function(error, response, body) {
       if (error) {
-        // console.log(error);
       } else {
         var resBody = JSON.parse(response.body);
         mysqldb.selectFollowed((err, results) => {
-          // err && console.log(err);
           if (results.length === 0) {
             mysqldb.addNewFollowed((err, results) => {
-              // err && console.log(err);
               results && mysqldb.selectFollowed((err, results) => {
-                // err && console.log(err);
-                // add each of response.ids to followers, each with following of results[0].id
-                results && mysqldb.addFollowers((err, results) => {
-                  // err && console.log(err);
-                  // results && console.log('made it here: ', results);
-                }, resBody.ids, results[0].id);
+                if (results) {
+                  var followedId = results[0].id;
+                  mysqldb.addFollowers((err, results) => {
+                    results && res.send();
+                  }, resBody.ids, followedId);
+                }
               }, lcUsername);
             }, lcUsername);
           } else {
-            // delete all followers with results[0].id
-            // then add each of response.ids to followers, each with following of results[0].id
+            var followedId = results[0].id;
             mysqldb.deleteFollowers((err, results) => {
-              // err && console.log(err);
               results && mysqldb.addFollowers((err, results) => {
-                  // err && console.log(err);
-                  // results && console.log('made it there: ', results);
-                }, resBody.ids, results[0].id);
-            }, resBody.ids, results[0].id);
+                results && res.send();
+              }, resBody.ids, followedId);
+            }, followedId);
           }
-        });
+        }, lcUsername);
       }
     };
-    request(options, callback);
+  
+    request(options, addFollowedAndFollowers);
   });
 });
 
