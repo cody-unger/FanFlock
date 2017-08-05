@@ -16,13 +16,13 @@ app.use(express.static(__dirname + '/../node_modules'));
 app.use(bodyParser.json());
 
 app.get('/items', function (req, res) {
-  items.selectAll(function(err, data) {
-    if(err) {
-      res.sendStatus(500);
-    } else {
-      res.json(data);
-    }
-  });
+  // items.selectUserGroup(function(err, data) {
+  //   if(err) {
+  //     res.sendStatus(500);
+  //   } else {
+  //     res.json(data);
+  //   }
+  // });
 });
 
 app.post('/items', function (req, res) {
@@ -32,12 +32,12 @@ app.post('/items', function (req, res) {
       'User-Agent': 'request'
       // 'Authorization': 'token ihlnJQ6b0BYrVY2Kk9T89Uq5W'
     },
-    oauth:
-        { consumer_key: 'ihlnJQ6b0BYrVY2Kk9T89Uq5W', 
-          consumer_secret: 'eNQifh5ar7UkOWH34YIiw9c8x7EQuWHWCzPc5iWzip1kH9N7uW',
-          token: '893651977338368000-h6GVhlnZyv6XhUH9FBLCntRrDuBEoAv',
-          token_secret: 'AjVJvPMmhXVC3do1XznwKdHTKInCTKrxvDKzl1XQe0C8n'
-        }
+    oauth: {
+      consumer_key: 'ihlnJQ6b0BYrVY2Kk9T89Uq5W', 
+      consumer_secret: 'eNQifh5ar7UkOWH34YIiw9c8x7EQuWHWCzPc5iWzip1kH9N7uW',
+      token: '893651977338368000-h6GVhlnZyv6XhUH9FBLCntRrDuBEoAv',
+      token_secret: 'AjVJvPMmhXVC3do1XznwKdHTKInCTKrxvDKzl1XQe0C8n'
+    }
   };
   var callback = function(error, response, body) {
     if (error) {

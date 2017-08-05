@@ -6,7 +6,7 @@ USE fanflock;
 
 CREATE TABLE followers (
   id int NOT NULL AUTO_INCREMENT,
-  userid varchar(50) NOT NULL,
+  userid integer NOT NULL,
   following integer NOT NULL,
   PRIMARY KEY (ID)
 );
