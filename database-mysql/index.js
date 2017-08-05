@@ -18,7 +18,7 @@ var selectUserGroup = function(callback) {
 };
 
 var selectFollowed = function(callback, username) {
-  connection.query('SELECT id FROM followed WHERE username = ' + username, function(err, results, fields) {
+  connection.query('SELECT id FROM followed WHERE username = "' + username + '"', function(err, results, fields) {
     if(err) {
       callback(err, null);
     } else {
@@ -28,7 +28,7 @@ var selectFollowed = function(callback, username) {
 };
 
 var addNewFollowed = function(callback, username) {
-  connection.query('INSERT INTO followed VALUES (' + username + ')', function(err, results, fields) {
+  connection.query('INSERT INTO followed (username) VALUES ("' + username + '")', function(err, results, fields) {
     if(err) {
       callback(err, null);
     } else {
@@ -60,3 +60,7 @@ var addFollowers = function(callback, followers, following) {
 };
 
 module.exports.selectUserGroup = selectUserGroup;
+module.exports.addNewFollowed = addNewFollowed;
+module.exports.selectFollowed = selectFollowed;
+module.exports.addFollowers = addFollowers;
+module.exports.deleteFollowers = deleteFollowers;
