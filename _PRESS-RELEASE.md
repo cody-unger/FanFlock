@@ -18,27 +18,36 @@ Once the project moves into development, the press release can be used as a touc
  
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
+  FanFlock
 
 ## Sub-Heading ##
   > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+  Targeted group generator for marketing and political campaign professionals.
 
 ## Summary ##
   > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+  FanFlock creates groups of Twitter users based on shared interests. FanFlock users can use these groups for target audience analysis and engagement.
 
 ## Problem ##
   > Describe the problem your product solves.
+  Outreach campaigns often cast too wide a net. They engage consumers who are unlikely to be interested in what the campaign is promoting.
 
 ## Solution ##
   > Describe how your product elegantly solves the problem.
+  FanFlock only targets people likely to engage with your campaign. The accounts a Twitter user follows indicate that users interests. So, only people who follow a select group of Twitter accounts will be included in a FanFlock target audience. 
 
 ## Quote from You ##
   > A quote from a spokesperson in your company.
+  FanFlock affordably empowers anyone running an outreach campaign of any kind.
 
 ## How to Get Started ##
   > Describe how easy it is to get started.
+  To improve your campaign outreach, just visit our website, submit a list of Twitter accounts that you think your audience would follow, and sit back and watch you audience be generated right before your eyes. 
 
 ## Customer Quote ##
   > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+  Before I started using FanFlock, I felt like a sleezy spammer. Now, the people I reach out to are happy to hear from me!
 
 ## Closing and Call to Action ##
   > Wrap it up and give pointers where the reader should go next.
+  FanFlock is free! Visit our website and target your campaign today!
