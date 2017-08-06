@@ -16,7 +16,7 @@ var selectUserGroup = function(callback, accountList) {
       callback(err, null);
       console.log(err);
     } else {
-      callback(null, results.slice(0, 50));
+      callback(null, results.slice(0, 95));
     }
   });
 };

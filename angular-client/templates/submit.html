@@ -1,8 +1,10 @@
 <div>
-  <form>
-    Add User Group: <input type="text" name="ugroup" ng-model="$ctrl.value">
-    <input type="submit" value="Submit" ng-click="$ctrl.handleclicksubmit($ctrl.value)">
+  <form class="usergroupform">
+    <div class="formheading">Add User Group:</div>
+    <div class="submissionrow">
+	    <input type="text" name="ugroup" ng-model="$ctrl.value">
+	    <input class="button" type="submit" value="Submit" ng-click="$ctrl.handleclicksubmit($ctrl.value); $ctrl.value = '';">
+	  </div>
   </form>
-  <br>
-  (please enter a comma-separated list of valid Twitter usernames)
+  <div class="instructions">(please enter a comma-separated list of valid Twitter usernames)</div>
 </div>

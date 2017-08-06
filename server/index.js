@@ -17,10 +17,12 @@ app.use(bodyParser.json());
 
 app.get('/items', function (req, res) {
   mysqldb.getUserGroupNames((err, usergroupnames) => {
-    usergroupnames = usergroupnames.map((usergroupnameObj) => {
-      return usergroupnameObj.usergroupname;
-    });
-    res.send({usergroupnames});
+    if (usergroupnames) {
+      usergroupnames = usergroupnames.map((usergroupnameObj) => {
+        return usergroupnameObj.usergroupname;
+      });
+      res.send({usergroupnames});
+    }
   });
 });
 
@@ -96,9 +98,9 @@ app.post('/getUserGroup', function (req, res) {
       var resSend = (error, response) => {
         if (response) {
           var parsedResBody = JSON.parse(response.body);
-          var usernames = parsedResBody.map((userObj) => {
+          var usernames = parsedResBody.length ? parsedResBody.map((userObj) => {
             return userObj.screen_name;
-          });
+          }) : [];
           res.send({usernames});
         }
       };

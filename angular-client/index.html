@@ -3,21 +3,68 @@
 <head>
   <title></title>
   <script src="angular/angular.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Droid Sans">
+  <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Lato">
   <style>
   * {
-    font-family: 'Helvetica Neue';
+    font-family: 'Droid Sans';
   }
   body {
     padding-left: 20%;
-    padding-right: 30%; 
+    padding-right: 20%; 
     background-color: #f6f6f6;
   }
+  .button {
+    background-color: #1dcaff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 7px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    cursor: hand;
+  }
+  .button:hover {
+    background-color: #338AFF;
+  }
+  .button:focus {
+    outline: none;
+  }
+  input[type=text] {
+    border: 2px solid #1dcaff;
+    border-radius: 4px;
+    height: 25px;
+    width: 85%;
+    font-family: 'Lato';
+    font-size: 18px;
+  }
+  input[type="text"]:focus {
+    outline: none;
+  }
+  .formheading {
+    font-size: 120%;
+    font-weight: bold;
+    padding-bottom: 3%;
+  }
+  .submissionrow {
+    display: flex;
+    justify-content: space-between;
+  }
+  .instructions {
+    padding-top: 2%;
+  }
   .logo {
-    font-size: 300%;
+    font-size: 400%;
+    font-family: 'Open Sans';
+    font-weight: bold;
+    font-style: italic;
     color: #1dcaff;
     border-bottom: thin solid #D3D3D3;
-    padding-top: 3%;
-    padding-bottom: 3%;
+    padding-top: 1.5%;
+    padding-bottom: 1.5%;
   }
   .appContainer {
     display: flex;
@@ -25,14 +72,37 @@
     padding-top: 3%;
   }
   .submit {
-    padding-top: 5%;
-    padding-bottom: 7%;
+    padding-bottom: 2.5%;
     border-bottom: thin solid #D3D3D3;
   }
   .lists {
-    margin-top: 5%;
     display: flex;
     justify-content: space-between;
+  }
+  .usergroupheading {
+    font-size: 120%;
+  }
+  .usergroup {
+    margin-bottom: 30%;
+  }
+  .list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .listheading {
+    font-size: 120%;
+  }
+  .listitem {
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+  .user {
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+  .userlink {
+    color: #1dcaff;
   }
   </style>
 </head>
