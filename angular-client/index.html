@@ -4,16 +4,47 @@
   <title></title>
   <script src="angular/angular.js"></script>
   <style>
-  .appContainer {display: flex; justify-content: space-between;}
+  * {
+    font-family: 'Helvetica Neue';
+  }
+  body {
+    padding-left: 20%;
+    padding-right: 30%; 
+    background-color: #f6f6f6;
+  }
+  .logo {
+    font-size: 300%;
+    color: #1dcaff;
+    border-bottom: thin solid #D3D3D3;
+    padding-top: 3%;
+    padding-bottom: 3%;
+  }
+  .appContainer {
+    display: flex;
+    flex-direction: column;
+    padding-top: 3%;
+  }
+  .submit {
+    padding-top: 5%;
+    padding-bottom: 7%;
+    border-bottom: thin solid #D3D3D3;
+  }
+  .lists {
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-between;
+  }
   </style>
 </head>
 <body>
+  <div class="logo">FanFlock</div>
   <div ng-app="app">
     <app />
   </div>
   <script type="text/javascript" src="index.js"></script>
   <script type="text/javascript" src="services/items.js"></script>
   <script type="text/javascript" src="services/userGroups.js"></script>
+  <script type="text/javascript" src="services/pageLoad.js"></script>
   <script type="text/javascript" src="components/app.js"></script>
   <script type="text/javascript" src="components/list.js"></script>
   <script type="text/javascript" src="components/listItem.js"></script>

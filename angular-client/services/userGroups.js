@@ -4,7 +4,7 @@ angular.module('app')
     userGroupQuery = userGroupQuery.split(',');
     $http({
         method: "POST",
-        url: "/items",
+        url: "/submitUserGroup",
         data: JSON.stringify({userGroupQuery}),
         contentType: 'application/JSON'
     }).then(function successCallback(response) {

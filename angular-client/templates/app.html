@@ -1,15 +1,15 @@
 <div class="appContainer">
-  <div class="userGroupContainer">
+  <div class="submit">
     <div>
-      <submit handleclick="$ctrl.handleclick"/>
-    </div>
-    <div>
-      <user-group users="$ctrl.users"/>
+      <submit handleclicksubmit="$ctrl.handleclicksubmit"/>
     </div>
   </div>
-  <div class="userGroupListContainer">
+  <div class="lists">
     <div>
-      <list items="$ctrl.items"/>
+      <user-group users="$ctrl.users" selectedusergroup="$ctrl.selectedusergroup"/>
+    </div>
+    <div>
+      <list items="$ctrl.items" handleclicklistitem = "$ctrl.handleclicklistitem"/>
     </div>
   </div>
 </div>

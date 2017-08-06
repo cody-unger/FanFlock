@@ -1,7 +1,7 @@
 angular.module('app')
 .component('submit', {
   bindings: {
-    handleclick: '<',
+    handleclicksubmit: '<',
   },
   controller: function() {
     this.value = '';

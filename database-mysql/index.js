@@ -7,12 +7,16 @@ var connection = mysql.createConnection({
   database : 'fanflock'
 });
 
-var selectUserGroup = function(callback) {
-  connection.query('SELECT * FROM followers', function(err, results, fields) {
+var selectUserGroup = function(callback, accountList) {
+  var subQueryStr = 'SELECT userid FROM followers INNER JOIN followed ON followers.following = followed.id AND followed.username IN ("' + accountList.join('","') + '")';
+  var queryStr = 'SELECT * FROM (' + subQueryStr + ') AS tablename GROUP BY userid HAVING COUNT(*) = ' + accountList.length;
+
+  connection.query(queryStr, function(err, results, fields) {
     if(err) {
       callback(err, null);
+      console.log(err);
     } else {
-      callback(null, results);
+      callback(null, results.slice(0, 50));
     }
   });
 };
@@ -59,8 +63,30 @@ var addFollowers = function(callback, followers, following) {
   });
 };
 
+var addNewUserGroupName = function(userGroupName) {
+  connection.query('INSERT INTO usergroupnames (usergroupname) VALUES ("' + userGroupName + '")', function(err, results, fields) {
+      // if(err) {
+      //   callback(err, null);
+      // } else {
+      //   callback(null, results);
+      // }
+    });
+};
+
+var getUserGroupNames = function(callback) {
+  connection.query('SELECT usergroupname FROM usergroupnames', function(err, results, fields) {
+      if(err) {
+        callback(err, null);
+      } else {
+        callback(null, results);
+      }
+    });
+};
+
 module.exports.selectUserGroup = selectUserGroup;
 module.exports.addNewFollowed = addNewFollowed;
 module.exports.selectFollowed = selectFollowed;
 module.exports.addFollowers = addFollowers;
 module.exports.deleteFollowers = deleteFollowers;
+module.exports.addNewUserGroupName = addNewUserGroupName;
+module.exports.getUserGroupNames = getUserGroupNames;

@@ -1,5 +1,4 @@
 <div>
-  <h4> List Component </h4>
-  There are {{$ctrl.items.length}} items.
-  <list-item ng-repeat="item in $ctrl.items" item=item />
+  <h4> User Groups </h4>
+  <list-item ng-repeat="item in $ctrl.items" item=item handleclicklistitem="$ctrl.handleclicklistitem"/>
 </div>

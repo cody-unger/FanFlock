@@ -1,15 +1,26 @@
 angular.module('app')
-.controller('AppCtrl', function(itemsService, userGroupsService) {
-  itemsService.getAll((data) => {
-    this.items = data;
+.controller('AppCtrl', function(itemsService, userGroupsService, itemsListService) {
+  // itemsService.getAll((data) => {
+  //   this.items = data;
+  // });
+  itemsListService.getUserGroupNames((usergroupnames) => {
+    this.items = usergroupnames;
   });
-  this.handleclick = (userGroupQuery) => {
+  this.handleclicksubmit = (userGroupQuery) => {
     userGroupsService.post(userGroupQuery, (userGroupQuery) => {
-      this.items.push(userGroupQuery.join(','));
+      this.items.push(userGroupQuery.join(', '));
+    });
+  };
+  this.handleclicklistitem = (accountList) => {
+    itemsService.getUserGroup(accountList, (usernames) => {
+      // set this.users to userlist
+      this.users = usernames;
+      this.selectedusergroup = accountList;
     });
   }; 
   this.items = [];
-  this.users = [{handle: '@bob', proflink: 'twitter.com'}, {handle: '@bob', proflink: 'twitter.com'}, {handle: '@bob', proflink: 'twitter.com'}];
+  this.users = [];
+  this.selectedusergroup = this.selectedusergroup || 'none selected';
 })
 .component('app', {
   bindings: {},

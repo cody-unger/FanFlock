@@ -16,16 +16,15 @@ app.use(express.static(__dirname + '/../node_modules'));
 app.use(bodyParser.json());
 
 app.get('/items', function (req, res) {
-  // items.selectUserGroup(function(err, data) {
-  //   if(err) {
-  //     res.sendStatus(500);
-  //   } else {
-  //     res.json(data);
-  //   }
-  // });
+  mysqldb.getUserGroupNames((err, usergroupnames) => {
+    usergroupnames = usergroupnames.map((usergroupnameObj) => {
+      return usergroupnameObj.usergroupname;
+    });
+    res.send({usergroupnames});
+  });
 });
 
-app.post('/items', function (req, res) {
+app.post('/submitUserGroup', function (req, res) {
   req.body.userGroupQuery.forEach(function(username) {
     var lcUsername = username.toLowerCase();
     var options = {
@@ -46,6 +45,7 @@ app.post('/items', function (req, res) {
       if (error) {
       } else {
         var resBody = JSON.parse(response.body);
+        mysqldb.addNewUserGroupName(req.body.userGroupQuery.join(', '));
         mysqldb.selectFollowed((err, results) => {
           if (results.length === 0) {
             mysqldb.addNewFollowed((err, results) => {
@@ -71,6 +71,40 @@ app.post('/items', function (req, res) {
     request(options, addFollowedAndFollowers);
   });
   res.status(201).send();
+});
+
+app.post('/getUserGroup', function (req, res) {
+  mysqldb.selectUserGroup((err, results) => {
+    err && console.log(err);
+    if (results) {
+      var userids = results.map((result) => {
+        return result.userid;
+      });
+      userids = userids.join(',');
+      var options = {
+        url: 'https://api.twitter.com/1.1/users/lookup.json?user_id=' + userids,
+        headers: {
+          'User-Agent': 'request'
+        },
+        oauth: {
+          consumer_key: 'ihlnJQ6b0BYrVY2Kk9T89Uq5W', 
+          consumer_secret: 'eNQifh5ar7UkOWH34YIiw9c8x7EQuWHWCzPc5iWzip1kH9N7uW',
+          token: '893651977338368000-h6GVhlnZyv6XhUH9FBLCntRrDuBEoAv',
+          token_secret: 'AjVJvPMmhXVC3do1XznwKdHTKInCTKrxvDKzl1XQe0C8n'
+        }
+      };
+      var resSend = (error, response) => {
+        if (response) {
+          var parsedResBody = JSON.parse(response.body);
+          var usernames = parsedResBody.map((userObj) => {
+            return userObj.screen_name;
+          });
+          res.send({usernames});
+        }
+      };
+      request(options, resSend);
+    }
+  }, req.body.accountList);
 });
 
 app.listen(3000, function() {

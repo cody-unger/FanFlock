@@ -1,14 +1,16 @@
 angular.module('app')
 .service('itemsService', function($http) {
-  this.getAll = function(callback) {
-    $http.get('/items')
-    .then(function({data}) {
-      if(callback) {
-        callback(data);
-      }
-    })
-    .catch(function(err) {
-      console.log(err);
-    });
+  this.getUserGroup = function(accountList, callback) {
+    accountList = accountList.split(', ');
+    $http({
+        method: "POST",
+        url: "/getUserGroup",
+        data: JSON.stringify({accountList}),
+        contentType: 'application/JSON'
+    }).then(function successCallback(response) {
+        callback(response.data.usernames);
+      }, function errorCallback(response) {
+        console.log('error');
+    });;
   };
 });

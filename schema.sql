@@ -17,6 +17,12 @@ CREATE TABLE followed (
   PRIMARY KEY (ID)
 );
 
+CREATE TABLE usergroupnames (
+  id int NOT NULL AUTO_INCREMENT,
+  usergroupname varchar(50) NOT NULL UNIQUE,
+  PRIMARY KEY (ID)
+);
+
 /*  Execute this file from the command line by typing:
  *    mysql -u root < schema.sql
  *  to create the database and the tables.*/
